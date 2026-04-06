@@ -21,138 +21,195 @@
 <body>
   <div id="app">
     <div id="scene-root" aria-hidden="true"></div>
-    <div class="backdrop-glow glow-left"></div>
-    <div class="backdrop-glow glow-right"></div>
-    <div class="top-fade"></div>
-    <div class="bottom-fade"></div>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="scene-wash scene-wash-top"></div>
+    <div class="scene-wash scene-wash-bottom"></div>
 
-    <header class="topbar glass interactive">
-      <div class="brand">
-        <div class="brand-badge">MM</div>
-        <div>
-          <div class="brand-title">Mogul Mayhem</div>
-          <div class="brand-subtitle">Pocket Empire</div>
+    <header class="hud-row">
+      <button id="menu-button" class="icon-bubble glass interactive" type="button" aria-label="Open empire menu">
+        <span class="icon-lines"></span>
+      </button>
+
+      <div class="brand-card glass interactive">
+        <div class="brand-mark">MM</div>
+        <div class="brand-copy">
+          <strong>Mogul Mayhem</strong>
+          <span>Pocket Empire</span>
         </div>
       </div>
 
-      <div class="stat-strip">
-        <div class="stat-pill">
-          <span class="pill-label">Cash</span>
-          <strong id="cash-display">+$0</strong>
-        </div>
-        <div class="stat-pill">
-          <span class="pill-label">Income/sec</span>
-          <strong id="income-display">+$0</strong>
-        </div>
-        <div class="stat-pill">
-          <span class="pill-label">Moonshots</span>
-          <strong id="moonshot-display">0</strong>
-        </div>
+      <div class="hud-actions">
+        <button id="quick-save-button" class="icon-bubble glass interactive" type="button" aria-label="Save game">S</button>
+        <button id="quick-moonshot-button" class="icon-bubble glass interactive accent" type="button" aria-label="Open moonshot">M</button>
       </div>
     </header>
+
+    <section class="stat-dock glass interactive" aria-label="Empire summary">
+      <article class="stat-card top-stat">
+        <span>Cash</span>
+        <strong id="cash-display">$0</strong>
+      </article>
+      <article class="stat-card top-stat">
+        <span>Income / sec</span>
+        <strong id="income-display">$0</strong>
+      </article>
+      <article class="stat-card top-stat top-stat-accent">
+        <span>Moonshots</span>
+        <strong id="moonshot-display">0</strong>
+      </article>
+    </section>
+
+    <aside class="scene-rail interactive" aria-label="Quick empire stats">
+      <button class="rail-chip glass" data-open-tab="companies" type="button">
+        <span>Valuation</span>
+        <strong id="valuation-display">$0</strong>
+      </button>
+      <button class="rail-chip glass" data-open-tab="events" type="button">
+        <span>Hype</span>
+        <strong id="hype-display">0 / 100</strong>
+      </button>
+    </aside>
 
     <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
     <div id="float-layer" aria-hidden="true"></div>
 
-    <button id="tap-button" class="tap-button interactive" type="button">
-      <span class="tap-button-label">Hype the HQ</span>
-      <span id="tap-power-display" class="tap-button-value">Tap for +$1</span>
+    <button id="tap-button" class="tap-fab interactive" type="button">
+      <span class="tap-fab-ring"></span>
+      <span class="tap-fab-copy">
+        <strong>Tap HQ</strong>
+        <span id="tap-power-display">Tap for +$1</span>
+      </span>
     </button>
 
-    <section class="panel-shell">
-      <div class="tab-header glass interactive">
-        <button class="tab-button active" data-tab="companies" type="button">Companies</button>
-        <button class="tab-button" data-tab="upgrades" type="button">Upgrades</button>
-        <button class="tab-button" data-tab="events" type="button">Events</button>
-        <button class="tab-button" data-tab="stats" type="button">Stats</button>
-      </div>
-
-      <div class="tab-panel glass active" id="tab-companies">
-        <div class="section-heading">
-          <div>
-            <h2>Companies</h2>
-            <p>Build the weirdest empire on the block.</p>
-          </div>
-          <div class="tiny-kpis">
-            <div class="tiny-kpi">
-              <span>Valuation</span>
-              <strong id="valuation-display">$0</strong>
-            </div>
-            <div class="tiny-kpi">
-              <span>Hype</span>
-              <strong id="hype-display">0</strong>
-            </div>
-          </div>
+    <section id="panel-sheet" class="panel-sheet glass open interactive" aria-label="Empire panel">
+      <div class="sheet-grabber" aria-hidden="true"></div>
+      <div class="sheet-header">
+        <div>
+          <h2 id="sheet-title">Companies</h2>
+          <p id="sheet-subtitle">Build the weirdest empire on the block.</p>
         </div>
-        <div id="companies-list" class="card-list"></div>
+        <button id="sheet-close-button" class="sheet-close" type="button" aria-label="Hide panel">Hide</button>
       </div>
 
-      <div class="tab-panel glass" id="tab-upgrades">
-        <div class="section-heading">
-          <div>
-            <h2>Upgrades</h2>
-            <p>Ridiculous ideas. Terrific margins.</p>
-          </div>
-          <div class="tiny-kpis">
-            <div class="tiny-kpi">
+      <div class="sheet-body">
+        <section id="tab-companies" class="sheet-panel active">
+          <div id="companies-list" class="panel-list"></div>
+        </section>
+
+        <section id="tab-upgrades" class="sheet-panel">
+          <div id="upgrades-list" class="panel-list"></div>
+        </section>
+
+        <section id="tab-events" class="sheet-panel">
+          <div id="active-events" class="event-stack"></div>
+          <div id="event-log" class="panel-list compact"></div>
+        </section>
+
+        <section id="tab-stats" class="sheet-panel">
+          <div class="overview-grid">
+            <article class="overview-card glass-subtle">
               <span>Tap Mult</span>
               <strong id="tap-mult-display">x1</strong>
-            </div>
-            <div class="tiny-kpi">
+            </article>
+            <article class="overview-card glass-subtle">
               <span>Income Mult</span>
               <strong id="income-mult-display">x1</strong>
-            </div>
-          </div>
-        </div>
-        <div id="upgrades-list" class="card-list"></div>
-      </div>
-
-      <div class="tab-panel glass" id="tab-events">
-        <div class="section-heading">
-          <div>
-            <h2>Events</h2>
-            <p>Chaos is good for engagement until it is not.</p>
-          </div>
-          <div class="tiny-kpis">
-            <div class="tiny-kpi">
-              <span>Current</span>
+            </article>
+            <article class="overview-card glass-subtle">
+              <span>Buffs Active</span>
               <strong id="active-buffs-display">0</strong>
-            </div>
-            <div class="tiny-kpi">
+            </article>
+            <article class="overview-card glass-subtle">
               <span>Last Save</span>
-              <strong id="save-age-display">—</strong>
-            </div>
+              <strong id="save-age-display">just now</strong>
+            </article>
           </div>
-        </div>
-        <div id="active-events" class="event-banner-list"></div>
-        <div id="event-log" class="card-list compact"></div>
-      </div>
-
-      <div class="tab-panel glass" id="tab-stats">
-        <div class="section-heading">
-          <div>
-            <h2>Stats</h2>
-            <p>For very serious people doing unserious things.</p>
-          </div>
-        </div>
-        <div id="stats-grid" class="stats-grid"></div>
+          <div id="stats-grid" class="stats-grid"></div>
+        </section>
       </div>
     </section>
 
-    <nav class="bottom-dock glass interactive" aria-label="Game controls">
-      <button id="moonshot-button" class="dock-button primary" type="button">
-        <span>Moonshot</span>
-        <strong id="moonshot-potential">+0 PP</strong>
+    <nav class="bottom-nav glass interactive" aria-label="Game navigation">
+      <button class="nav-button active" data-tab="companies" type="button">
+        <span>Build</span>
       </button>
-      <button id="save-button" class="dock-button" type="button">
-        <span>Save</span>
-        <strong>Manual</strong>
+      <button class="nav-button" data-tab="upgrades" type="button">
+        <span>Boost</span>
       </button>
-      <button id="reset-button" class="dock-button danger" type="button">
-        <span>Reset</span>
-        <strong>Start over</strong>
+      <button class="nav-button" data-tab="events" type="button">
+        <span>Buzz</span>
+      </button>
+      <button class="nav-button" data-tab="stats" type="button">
+        <span>Ledger</span>
       </button>
     </nav>
+
+    <div id="overlay" class="overlay hidden"></div>
+
+    <aside id="side-drawer" class="side-drawer glass interactive" aria-label="Empire controls">
+      <div class="drawer-header">
+        <div>
+          <h3>Empire Control</h3>
+          <p>Quick actions, prestige, and the boring serious numbers.</p>
+        </div>
+        <button id="drawer-close-button" class="sheet-close" type="button" aria-label="Close empire menu">Close</button>
+      </div>
+
+      <div class="drawer-hero glass-subtle">
+        <div>
+          <span>Moonshot potential</span>
+          <strong id="moonshot-potential">+0 PP</strong>
+        </div>
+        <button id="moonshot-button" class="drawer-action primary" type="button">Launch Moonshot</button>
+      </div>
+
+      <div class="drawer-actions-grid">
+        <button id="save-button" class="drawer-action" type="button">Save Now</button>
+        <button id="reset-button" class="drawer-action danger" type="button">Reset Empire</button>
+      </div>
+
+      <div class="drawer-mini-grid">
+        <article class="mini-glance glass-subtle">
+          <span>Valuation</span>
+          <strong id="drawer-valuation-display">$0</strong>
+        </article>
+        <article class="mini-glance glass-subtle">
+          <span>Hype</span>
+          <strong id="drawer-hype-display">0 / 100</strong>
+        </article>
+        <article class="mini-glance glass-subtle">
+          <span>Tap</span>
+          <strong id="drawer-tap-display">x1</strong>
+        </article>
+        <article class="mini-glance glass-subtle">
+          <span>Income</span>
+          <strong id="drawer-income-display">x1</strong>
+        </article>
+      </div>
+
+      <div class="drawer-section">
+        <div class="drawer-section-title">Live status</div>
+        <div id="drawer-buffs-display" class="drawer-note glass-subtle">No buffs active.</div>
+      </div>
+
+      <div class="drawer-section">
+        <div class="drawer-section-title">System</div>
+        <div class="drawer-note glass-subtle">Last save: <strong id="drawer-save-age-display">just now</strong></div>
+      </div>
+    </aside>
+
+    <div id="confirm-modal" class="confirm-modal hidden interactive" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+      <div class="confirm-card glass">
+        <div class="confirm-kicker" id="confirm-kicker">Confirm</div>
+        <h3 id="confirm-title">Are you sure?</h3>
+        <p id="confirm-message">This action cannot be undone.</p>
+        <div class="confirm-actions">
+          <button id="confirm-cancel" class="modal-button secondary" type="button">Cancel</button>
+          <button id="confirm-accept" class="modal-button" type="button">Confirm</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script type="module" src="./js/main.js"></script>
