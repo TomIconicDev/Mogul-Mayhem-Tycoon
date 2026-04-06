@@ -16,56 +16,63 @@
   </head>
   <body>
     <div id="app">
+      <!-- Top Bar -->
       <header class="topbar glass">
-        <div>
-          <div class="eyebrow">Pocket Empire</div>
+        <div class="topbar-left">
+          <div class="eyebrow">POCKET EMPIRE</div>
           <h1>Mogul Mayhem</h1>
         </div>
         <div class="stat-cluster">
           <div class="chip">
-            <span class="chip-label">Cash</span>
+            <span class="chip-label">CASH</span>
             <strong id="cashValue">$0</strong>
           </div>
           <div class="chip">
-            <span class="chip-label">/ sec</span>
+            <span class="chip-label">/ SEC</span>
             <strong id="incomeValue">$0</strong>
           </div>
           <div class="chip highlight">
-            <span class="chip-label">Moonshots</span>
+            <span class="chip-label">MOONSHOTS</span>
             <strong id="prestigeValue">0</strong>
           </div>
         </div>
       </header>
 
+      <!-- Main Layout -->
       <main class="layout">
+        
+        <!-- 3D Scene Panel -->
         <section class="scene-panel glass">
           <div class="scene-head">
             <div>
-              <p class="eyebrow">Tap the HQ</p>
+              <p class="eyebrow">TAP THE HQ TOWER</p>
               <h2>Build the most ridiculous empire alive</h2>
             </div>
-            <button id="tapButton" class="primary-btn">Cash In</button>
+            <button id="tapButton" class="primary-btn">CASH IN</button>
           </div>
+          
           <div id="sceneWrap">
-            <canvas id="sceneCanvas" aria-label="3D city scene"></canvas>
-            <div class="tap-hint">Tap the tower or the button for instant cash.</div>
+            <canvas id="sceneCanvas" aria-label="3D city scene" width="800" height="600"></canvas>
+            <div class="tap-hint">Tap the glowing tower or the button above for instant cash</div>
           </div>
+
           <div class="scene-footer">
             <div class="meter-card">
-              <span>Tap Power</span>
+              <span>TAP POWER</span>
               <strong id="tapPowerValue">$1</strong>
             </div>
             <div class="meter-card">
-              <span>Hype Level</span>
+              <span>HYPE LEVEL</span>
               <strong id="hypeValue">1</strong>
             </div>
             <div class="meter-card">
-              <span>Company Value</span>
+              <span>COMPANY VALUE</span>
               <strong id="valuationValue">$0</strong>
             </div>
           </div>
         </section>
 
+        <!-- Sidebar / Tabs -->
         <section class="sidebar">
           <div class="tabs glass" role="tablist" aria-label="Game tabs">
             <button class="tab active" data-tab="companies">Companies</button>
@@ -74,6 +81,7 @@
             <button class="tab" data-tab="stats">Stats</button>
           </div>
 
+          <!-- Tab Panels -->
           <div id="tab-companies" class="panel glass tab-panel active"></div>
           <div id="tab-upgrades" class="panel glass tab-panel"></div>
           <div id="tab-events" class="panel glass tab-panel"></div>
@@ -81,19 +89,22 @@
         </section>
       </main>
 
+      <!-- Bottom Dock -->
       <footer class="dock glass">
-        <button id="moonshotButton" class="dock-btn accent">Launch Moonshot</button>
-        <button id="saveButton" class="dock-btn">Save</button>
-        <button id="resetButton" class="dock-btn danger">Hard Reset</button>
+        <button id="moonshotButton" class="dock-btn accent">🚀 LAUNCH MOONSHOT</button>
+        <button id="saveButton" class="dock-btn">💾 SAVE</button>
+        <button id="resetButton" class="dock-btn danger">RESET</button>
       </footer>
 
+      <!-- Toast Notifications -->
       <div id="toastStack" class="toast-stack" aria-live="polite"></div>
 
-      <!-- NEW: Floating earnings overlay -->
+      <!-- FLOATING EARNINGS OVERLAY (NEW UPGRADE) -->
       <div id="floatingOverlay" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; overflow:hidden;"></div>
 
+      <!-- TEMPLATES (used by ui.js) -->
       <template id="companyCardTemplate">
-        <article class="company-card">
+        <article class="company-card glass">
           <div class="company-card__head">
             <div>
               <p class="company-kicker"></p>
@@ -103,19 +114,19 @@
           </div>
           <p class="company-desc"></p>
           <div class="company-metrics">
-            <div><span>Base Income</span><strong class="metric-income"></strong></div>
-            <div><span>Level</span><strong class="metric-level"></strong></div>
-            <div><span>Boost</span><strong class="metric-boost"></strong></div>
+            <div><span>BASE INCOME</span><strong class="metric-income"></strong></div>
+            <div><span>LEVEL</span><strong class="metric-level"></strong></div>
+            <div><span>BOOST</span><strong class="metric-boost"></strong></div>
           </div>
           <div class="company-actions">
-            <button class="buy-btn primary-btn small"></button>
-            <button class="upgrade-btn secondary-btn small"></button>
+            <button class="buy-btn primary-btn small">BUY</button>
+            <button class="upgrade-btn secondary-btn small">UPGRADE</button>
           </div>
         </article>
       </template>
 
       <template id="upgradeCardTemplate">
-        <article class="upgrade-card">
+        <article class="upgrade-card glass">
           <div>
             <p class="upgrade-kicker"></p>
             <h3 class="upgrade-name"></h3>
@@ -123,13 +134,13 @@
           </div>
           <div class="upgrade-footer">
             <span class="pill upgrade-tag"></span>
-            <button class="upgrade-buy secondary-btn small"></button>
+            <button class="upgrade-buy secondary-btn small">BUY</button>
           </div>
         </article>
       </template>
 
       <template id="eventCardTemplate">
-        <article class="event-card">
+        <article class="event-card glass">
           <div>
             <p class="event-kicker"></p>
             <h3 class="event-name"></h3>
@@ -137,12 +148,13 @@
           </div>
           <div class="event-footer">
             <span class="pill event-impact"></span>
-            <button class="event-action secondary-btn small"></button>
+            <button class="event-action secondary-btn small">ACTIVATE</button>
           </div>
         </article>
       </template>
     </div>
 
+    <!-- Main script -->
     <script type="module" src="js/main.js"></script>
   </body>
 </html>
