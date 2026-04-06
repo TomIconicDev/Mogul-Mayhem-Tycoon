@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no"
+  />
+  <title>Mogul Mayhem: Pocket Empire</title>
+  <meta name="description" content="Funny billionaire parody idle tycoon optimized for iPhone and GitHub Pages." />
+  <meta name="theme-color" content="#eef5ff" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Pocket Empire" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="scene-root" aria-hidden="true"></div>
+    <div class="backdrop-glow glow-left"></div>
+    <div class="backdrop-glow glow-right"></div>
+    <div class="top-fade"></div>
+    <div class="bottom-fade"></div>
+
+    <header class="topbar glass interactive">
+      <div class="brand">
+        <div class="brand-badge">MM</div>
+        <div>
+          <div class="brand-title">Mogul Mayhem</div>
+          <div class="brand-subtitle">Pocket Empire</div>
+        </div>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat-pill">
+          <span class="pill-label">Cash</span>
+          <strong id="cash-display">+$0</strong>
+        </div>
+        <div class="stat-pill">
+          <span class="pill-label">Income/sec</span>
+          <strong id="income-display">+$0</strong>
+        </div>
+        <div class="stat-pill">
+          <span class="pill-label">Moonshots</span>
+          <strong id="moonshot-display">0</strong>
+        </div>
+      </div>
+    </header>
+
+    <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+    <div id="float-layer" aria-hidden="true"></div>
+
+    <button id="tap-button" class="tap-button interactive" type="button">
+      <span class="tap-button-label">Hype the HQ</span>
+      <span id="tap-power-display" class="tap-button-value">Tap for +$1</span>
+    </button>
+
+    <section class="panel-shell">
+      <div class="tab-header glass interactive">
+        <button class="tab-button active" data-tab="companies" type="button">Companies</button>
+        <button class="tab-button" data-tab="upgrades" type="button">Upgrades</button>
+        <button class="tab-button" data-tab="events" type="button">Events</button>
+        <button class="tab-button" data-tab="stats" type="button">Stats</button>
+      </div>
+
+      <div class="tab-panel glass active" id="tab-companies">
+        <div class="section-heading">
+          <div>
+            <h2>Companies</h2>
+            <p>Build the weirdest empire on the block.</p>
+          </div>
+          <div class="tiny-kpis">
+            <div class="tiny-kpi">
+              <span>Valuation</span>
+              <strong id="valuation-display">$0</strong>
+            </div>
+            <div class="tiny-kpi">
+              <span>Hype</span>
+              <strong id="hype-display">0</strong>
+            </div>
+          </div>
+        </div>
+        <div id="companies-list" class="card-list"></div>
+      </div>
+
+      <div class="tab-panel glass" id="tab-upgrades">
+        <div class="section-heading">
+          <div>
+            <h2>Upgrades</h2>
+            <p>Ridiculous ideas. Terrific margins.</p>
+          </div>
+          <div class="tiny-kpis">
+            <div class="tiny-kpi">
+              <span>Tap Mult</span>
+              <strong id="tap-mult-display">x1</strong>
+            </div>
+            <div class="tiny-kpi">
+              <span>Income Mult</span>
+              <strong id="income-mult-display">x1</strong>
+            </div>
+          </div>
+        </div>
+        <div id="upgrades-list" class="card-list"></div>
+      </div>
+
+      <div class="tab-panel glass" id="tab-events">
+        <div class="section-heading">
+          <div>
+            <h2>Events</h2>
+            <p>Chaos is good for engagement until it is not.</p>
+          </div>
+          <div class="tiny-kpis">
+            <div class="tiny-kpi">
+              <span>Current</span>
+              <strong id="active-buffs-display">0</strong>
+            </div>
+            <div class="tiny-kpi">
+              <span>Last Save</span>
+              <strong id="save-age-display">—</strong>
+            </div>
+          </div>
+        </div>
+        <div id="active-events" class="event-banner-list"></div>
+        <div id="event-log" class="card-list compact"></div>
+      </div>
+
+      <div class="tab-panel glass" id="tab-stats">
+        <div class="section-heading">
+          <div>
+            <h2>Stats</h2>
+            <p>For very serious people doing unserious things.</p>
+          </div>
+        </div>
+        <div id="stats-grid" class="stats-grid"></div>
+      </div>
+    </section>
+
+    <nav class="bottom-dock glass interactive" aria-label="Game controls">
+      <button id="moonshot-button" class="dock-button primary" type="button">
+        <span>Moonshot</span>
+        <strong id="moonshot-potential">+0 PP</strong>
+      </button>
+      <button id="save-button" class="dock-button" type="button">
+        <span>Save</span>
+        <strong>Manual</strong>
+      </button>
+      <button id="reset-button" class="dock-button danger" type="button">
+        <span>Reset</span>
+        <strong>Start over</strong>
+      </button>
+    </nav>
+  </div>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
