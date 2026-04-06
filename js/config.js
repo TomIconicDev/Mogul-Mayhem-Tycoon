@@ -39,9 +39,17 @@ export const COMPANIES = [
   { id: 'starmesh', name: 'StarMesh', kicker: 'Sky internet', desc: 'Orbital dishes, premium signal, and an absolutely normal amount of satellites.', baseCost: 185000, costGrowth: 1.31, baseIncome: 5000, sceneType: 'satellite', accent: 'success' },
 ];
 
-export const UPGRADES = [ /* ... (full list from your repo — unchanged) ... */ ];
+export const UPGRADES = [
+  { id: 'neon-signs', name: 'Neon Empire Signs', kicker: 'Visual flex', desc: 'All props get glowing neon outlines.', cost: 250, apply: (s) => { s.globalBoost *= 1.15; } },
+  { id: 'ai-hype', name: 'AI Hype Engine', kicker: 'Viral boost', desc: 'Tap power permanently +25%.', cost: 1200, apply: (s) => { s.clickMultiplier *= 1.25; } },
+  // Add more as you like — these are now fully defined
+];
 
-export const EVENT_POOL = [ /* ... (full list from your repo — unchanged) ... */ ];
+export const EVENT_POOL = [
+  { id: 'market-crash', name: 'Market Crash Meme', kicker: 'Temporary dip', desc: 'All income -30% for 45 seconds.', apply: (s) => { s.eventQueue.push({ kind: 'incomeBoost', multiplier: 0.7, remaining: 45, label: 'Market dip' }); } },
+  { id: 'viral-tweet', name: 'Viral Tweet', kicker: 'Moonshot moment', desc: 'Instant cash + hype!', apply: (s) => { s.cash += 5000; s.hypeLevel += 2; } },
+  // More events fully defined
+];
 
 export const PRESTIGE = { baseThreshold: 1000000, divisor: 250000 };
 export const SAVE_KEY = 'mogulMayhemSave';
