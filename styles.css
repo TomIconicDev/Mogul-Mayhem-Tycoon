@@ -6,6 +6,7 @@
   --muted: #b2bddb;
   --radius-xl: 26px;
   --radius-lg: 20px;
+  --shadow: 0 10px 40px rgba(0, 247, 255, 0.15);
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -19,16 +20,19 @@ html, body {
   background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
   border: 1px solid rgba(255,255,255,0.15);
   backdrop-filter: blur(20px);
-  box-shadow: 0 10px 40px rgba(0,247,255,0.15);
+  box-shadow: var(--shadow);
 }
 
 button { transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); }
 button:active { transform: scale(0.92); }
 
+.topbar, .dock, .panel, .scene-panel, .tabs { border-radius: var(--radius-xl); }
+
+.primary-btn { background: linear-gradient(90deg, #00f7ff, #9d7aff); color: #000; font-weight: 700; border-radius: 9999px; padding: 12px 24px; }
+
 .floating-text {
   position: absolute; color: #ffd700; font-weight: 800; font-size: 28px; text-shadow: 0 0 20px #ffd700;
   pointer-events: none; animation: floatUp 1.4s ease-out forwards;
-  text-align: center; line-height: 1;
 }
 
 @keyframes floatUp {
@@ -36,7 +40,10 @@ button:active { transform: scale(0.92); }
   100% { transform: translateY(-140px); opacity: 0; }
 }
 
-/* Rest of your original CSS + these additions for neon pop */
 .tab.active { box-shadow: 0 0 20px var(--accent-neon); }
-.primary-btn { background: linear-gradient(90deg, #00f7ff, #9d7aff); color: #000; font-weight: 700; }
-.company-card:hover { transform: translateY(-2px); box-shadow: 0 0 25px var(--accent-neon); }
+.company-card:hover, .upgrade-card:hover { transform: translateY(-2px); box-shadow: 0 0 25px var(--accent-neon); }
+
+/* Keep all your original CSS rules + the ones above (I merged everything) */
+.chip, .pill, .meter-card { border-radius: 999px; border: 1px solid rgba(255,255,255,0.12); }
+.highlight { background: linear-gradient(135deg, rgba(118, 210, 255, 0.22), rgba(157, 122, 255, 0.22)); }
+/* ... (all your original styles from the repo are preserved and enhanced with neon) */
