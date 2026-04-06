@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <meta name="theme-color" content="#0f1220" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Mogul Mayhem" />
+    <meta name="description" content="A funny parody billionaire empire clicker built for iPhone and GitHub Pages." />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="assets/ui/favicon.svg" />
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Mogul Mayhem: Pocket Empire</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar glass">
+        <div>
+          <div class="eyebrow">Pocket Empire</div>
+          <h1>Mogul Mayhem</h1>
+        </div>
+        <div class="stat-cluster">
+          <div class="chip">
+            <span class="chip-label">Cash</span>
+            <strong id="cashValue">$0</strong>
+          </div>
+          <div class="chip">
+            <span class="chip-label">/ sec</span>
+            <strong id="incomeValue">$0</strong>
+          </div>
+          <div class="chip highlight">
+            <span class="chip-label">Moonshots</span>
+            <strong id="prestigeValue">0</strong>
+          </div>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="scene-panel glass">
+          <div class="scene-head">
+            <div>
+              <p class="eyebrow">Tap the HQ</p>
+              <h2>Build the most ridiculous empire alive</h2>
+            </div>
+            <button id="tapButton" class="primary-btn">Cash In</button>
+          </div>
+          <div id="sceneWrap">
+            <canvas id="sceneCanvas" aria-label="3D city scene"></canvas>
+            <div class="tap-hint">Tap the tower or the button for instant cash.</div>
+          </div>
+          <div class="scene-footer">
+            <div class="meter-card">
+              <span>Tap Power</span>
+              <strong id="tapPowerValue">$1</strong>
+            </div>
+            <div class="meter-card">
+              <span>Hype Level</span>
+              <strong id="hypeValue">1</strong>
+            </div>
+            <div class="meter-card">
+              <span>Company Value</span>
+              <strong id="valuationValue">$0</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="sidebar">
+          <div class="tabs glass" role="tablist" aria-label="Game tabs">
+            <button class="tab active" data-tab="companies">Companies</button>
+            <button class="tab" data-tab="upgrades">Upgrades</button>
+            <button class="tab" data-tab="events">Events</button>
+            <button class="tab" data-tab="stats">Stats</button>
+          </div>
+
+          <div id="tab-companies" class="panel glass tab-panel active"></div>
+          <div id="tab-upgrades" class="panel glass tab-panel"></div>
+          <div id="tab-events" class="panel glass tab-panel"></div>
+          <div id="tab-stats" class="panel glass tab-panel"></div>
+        </section>
+      </main>
+
+      <footer class="dock glass">
+        <button id="moonshotButton" class="dock-btn accent">Launch Moonshot</button>
+        <button id="saveButton" class="dock-btn">Save</button>
+        <button id="resetButton" class="dock-btn danger">Hard Reset</button>
+      </footer>
+
+      <div id="toastStack" class="toast-stack" aria-live="polite"></div>
+
+      <template id="companyCardTemplate">
+        <article class="company-card">
+          <div class="company-card__head">
+            <div>
+              <p class="company-kicker"></p>
+              <h3 class="company-name"></h3>
+            </div>
+            <span class="pill company-owned"></span>
+          </div>
+          <p class="company-desc"></p>
+          <div class="company-metrics">
+            <div><span>Base Income</span><strong class="metric-income"></strong></div>
+            <div><span>Level</span><strong class="metric-level"></strong></div>
+            <div><span>Boost</span><strong class="metric-boost"></strong></div>
+          </div>
+          <div class="company-actions">
+            <button class="buy-btn primary-btn small"></button>
+            <button class="upgrade-btn secondary-btn small"></button>
+          </div>
+        </article>
+      </template>
+
+      <template id="upgradeCardTemplate">
+        <article class="upgrade-card">
+          <div>
+            <p class="upgrade-kicker"></p>
+            <h3 class="upgrade-name"></h3>
+            <p class="upgrade-desc"></p>
+          </div>
+          <div class="upgrade-footer">
+            <span class="pill upgrade-tag"></span>
+            <button class="upgrade-buy secondary-btn small"></button>
+          </div>
+        </article>
+      </template>
+
+      <template id="eventCardTemplate">
+        <article class="event-card">
+          <div>
+            <p class="event-kicker"></p>
+            <h3 class="event-name"></h3>
+            <p class="event-desc"></p>
+          </div>
+          <div class="event-footer">
+            <span class="pill event-impact"></span>
+            <button class="event-action secondary-btn small"></button>
+          </div>
+        </article>
+      </template>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
